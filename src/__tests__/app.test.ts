@@ -6,28 +6,28 @@ const app = newApp();
 describe("Test robot position", () => {
   beforeEach(() => {
     //before each time a test case runs , reset the rover position so the output can be easily predicted
-    marsRover.resetRover()
+    marsRover.resetRover();
   });
   afterEach(() => {
     //after all the tests run , ensure that the position is returned correctly
     let position: String = marsRover.getPosition();
-    expect(position).toMatch(new RegExp("^-?\\d+ -?\\d+ (North|South|East|West)$"));
+    expect(position).toMatch(
+      new RegExp("^-?\\d+ -?\\d+ (North|South|East|West)$")
+    );
   });
-  //Forwards While Facing North
-  test("api should respond when asked to move forwards while facing north to add 1 to current Y ", () => {
-    return request(app).post("/moveRover").send({movementString:"F"}).expect(200,{roverPosition:"0 1 North"})
+
+  test.each([
+    ["F", "0 1 North"],
+    ["B", "0 -1 North"],
+    ["L", "0 0 West"],
+    ["R", "0 0 East"],
+    ["FF", "0 2 North"],
+  ])("testing facing North with command %s", (a,b) => {
+    return request(app)
+      .post("/moveRover")
+      .send({ movementString: a })
+      .expect(200, { roverPosition:b });  
   });
-  //Backward while Facing North
-  test("api should respond when asked to move forwards while facing north to subtract 1 to current Y ", () => {
-    return request(app).post("/moveRover").send({movementString:"B"}).expect(200,{roverPosition:"0 -1 North"})
-  });
-  test("api should respond when asked to move Left from North to point West ", () => {
-    return request(app).post("/moveRover").send({movementString:"L"}).expect(200,{roverPosition:"0 0 West"})
-  });
-  test("api should respond when asked to move Right from North to point East ", () => {
-    return request(app).post("/moveRover").send({movementString:"R"}).expect(200,{roverPosition:"0 0 East"})
-  });
-  test("api should respond when asked to move with array of charecters ", () => {
-    return request(app).post("/moveRover").send({movementString:"FF"}).expect(200,{roverPosition:"0 2 North"})
-  });
+
+  
 });
