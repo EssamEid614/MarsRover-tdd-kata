@@ -65,6 +65,14 @@ describe.each([
       ["LLLLLLLL", "0 0 West"],
     ],
   ],
+  [
+    4,
+    2,
+    "East",
+    [
+      ["FLFFFRFLB", "6 4 North"],
+    ],
+  ],
 ])(
   "Testing Robot with initial conditions x:%i, y:%i facing %s",
   (
