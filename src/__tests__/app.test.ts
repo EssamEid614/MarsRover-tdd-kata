@@ -18,7 +18,7 @@ describe.each([
       ["BB", "0 -2 North"],
       ["LL", "0 0 South"],
       ["LLLLLLLL", "0 0 North"],
-      ["FRFFFFFFLL", "1 3 East Stopped"], //this should hit an obstacle
+      ["RFLFFFFFLLLRFB", "1 3 North Stopped"], //this should hit an obstacle
     ],
   ],
   [
