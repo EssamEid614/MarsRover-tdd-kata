@@ -17,4 +17,8 @@ describe("Test robot position", () => {
   test("api should respond when asked to move forwards while facing north to add 1 to current Y ", () => {
     return request(app).post("/moveRover").send({movementString:"F"}).expect(200,{roverPosition:"0 1 North"})
   });
+  //Backward while Facing North
+  test("api should respond when asked to move forwards while facing north to add 1 to current Y ", () => {
+    return request(app).post("/moveRover").send({movementString:"B"}).expect(200,{roverPosition:"0 -1 North"})
+  });
 });
