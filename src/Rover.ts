@@ -11,7 +11,7 @@ export default class Rover{
     }
 
     public getPosition(){
-        return ''
+        return `${this.x} ${this.y} ${this.facingDirection}`
     }
 
 
