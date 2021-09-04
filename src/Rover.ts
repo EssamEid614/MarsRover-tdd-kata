@@ -26,8 +26,8 @@ export default class Rover {
         this.y = this.y + nextMotion.val;
       }
     }
-    else{
-        
+    else if(movementChar === "L"){
+        this.facingDirection="West"
     }
 
     return this.getPosition();
