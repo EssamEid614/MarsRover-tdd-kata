@@ -30,7 +30,10 @@ export default class Rover {
         const currentIndex:number = this.circularArrayOfDirections.indexOf(this.facingDirection)
         this.facingDirection=this.circularArrayOfDirections[currentIndex+7%4]
     }
-
+    else{
+        this.facingDirection="East"
+    }
+    
     return this.getPosition();
   }
   public getFacingDirection(): String {
