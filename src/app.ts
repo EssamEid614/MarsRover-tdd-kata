@@ -28,7 +28,8 @@ export function newApp(): Express {
   app.use(express.json());
   app.post("/moveRover", (req, res) => {
     let newPosition: String;
-    const movementString: String = req.body.movementString;
+    try {
+      const movementString: String = req.body.movementString;
     for (let i = 0; i < movementString.length; i++) {
       let oldPosition = marsRover.getPosition();
       let hitObstical: boolean = false;
@@ -48,6 +49,10 @@ export function newApp(): Express {
       }
     }
     res.status(200).send({ roverPosition: newPosition });
+    } catch (error) {
+      res.status(400)
+    }
+    
   });
 
   return app;
