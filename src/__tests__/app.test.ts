@@ -5,7 +5,10 @@ import Rover from "../Rover";
 const app = newApp();
 
 describe.each([
-  [0,0,"North",
+  [
+    0,
+    0,
+    "North",
     [
       ["F", "0 1 North"],
       ["B", "0 -1 North"],
@@ -17,7 +20,10 @@ describe.each([
       ["LLLLLLLL", "0 0 North"],
     ],
   ],
-  [0,0,"South",
+  [
+    0,
+    0,
+    "South",
     [
       ["F", "0 -1 South"],
       ["B", "0 1 South"],
@@ -29,18 +35,36 @@ describe.each([
       ["LLLLLLLL", "0 0 South"],
     ],
   ],
-  [0,0,"East",
+  [
+    0,
+    0,
+    "East",
     [
-        ["F", "1 0 East"],
-        ["B", "-1 0 East"],
-        ["L", "0 0 North"],
-        ["R", "0 0 South"],
-        ["FF", "2 0 East"],
-        ["BB", "-2 0 East"],
-        ["LL", "0 0 West"],
-        ["LLLLLLLL", "0 0 East"],
+      ["F", "1 0 East"],
+      ["B", "-1 0 East"],
+      ["L", "0 0 North"],
+      ["R", "0 0 South"],
+      ["FF", "2 0 East"],
+      ["BB", "-2 0 East"],
+      ["LL", "0 0 West"],
+      ["LLLLLLLL", "0 0 East"],
     ],
-  ]
+  ],
+  [
+    0,
+    0,
+    "West",
+    [
+      ["F", "-1 0 West"],
+      ["B", "1 0 West"],
+      ["L", "0 0 South"],
+      ["R", "0 0 North"],
+      ["FF", "-2 0 West"],
+      ["BB", "2 0 West"],
+      ["LL", "0 0 East"],
+      ["LLLLLLLL", "0 0 West"],
+    ],
+  ],
 ])(
   "Testing Robot with initial conditions x:%i, y:%i facing %s",
   (
@@ -60,11 +84,14 @@ describe.each([
         new RegExp("^-?\\d+ -?\\d+ (North|South|East|West)$")
       );
     });
-    test.each(testCases)(`testing facing ${initialDirection} with command %s`, (a, b) => {
-      return request(app)
-        .post("/moveRover")
-        .send({ movementString: a })
-        .expect(200, { roverPosition: b });
-    });
+    test.each(testCases)(
+      `testing facing ${initialDirection} with command %s`,
+      (a, b) => {
+        return request(app)
+          .post("/moveRover")
+          .send({ movementString: a })
+          .expect(200, { roverPosition: b });
+      }
+    );
   }
 );
