@@ -17,6 +17,18 @@ describe.each([
       ["LLLLLLLL", "0 0 North"],
     ],
   ],
+  [0,0,"South",
+    [
+      ["F", "0 -1 South"],
+      ["B", "0 1 South"],
+      ["L", "0 0 East"],
+      ["R", "0 0 West"],
+      ["FF", "0 -2 South"],
+      ["BB", "0 2 South"],
+      ["LL", "0 0 North"],
+      ["LLLLLLLL", "0 0 South"],
+    ],
+  ],
 ])(
   "Testing Robot with initial conditions x:%i, y:%i facing %s",
   (
