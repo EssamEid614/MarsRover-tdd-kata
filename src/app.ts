@@ -11,7 +11,7 @@
  const initialRandomY = Math.floor(Math.random()*10)
  const initialRandomDirectionIndex =Math.floor(Math.random()*FACING_DIRECTIONS.length)
  let marsRover:Rover = new Rover(initialRandomX,initialRandomY,FACING_DIRECTIONS[initialRandomDirectionIndex])
-
+const obstacles = [[1,4],[3,5],[7,4]]
  export {marsRover};
  export function newApp(): Express {
    const app:Express = express();
@@ -23,6 +23,9 @@
          newPosition= marsRover.move(movementString[i])
       }
       res.status(200).send({roverPosition:newPosition})
+   })
+   app.get("/roverPosition",(req,res)=>{
+      res.status(200).send({roverPosition:marsRover.getPosition()})
    })
    return app;
 }
