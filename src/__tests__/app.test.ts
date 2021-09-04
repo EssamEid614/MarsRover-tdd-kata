@@ -24,4 +24,7 @@ describe("Test robot position", () => {
   test("api should respond when asked to move Left from North to point West ", () => {
     return request(app).post("/moveRover").send({movementString:"L"}).expect(200,{roverPosition:"0 0 West"})
   });
+  test("api should respond when asked to move Right from North to point East ", () => {
+    return request(app).post("/moveRover").send({movementString:"R"}).expect(200,{roverPosition:"0 0 East"})
+  });
 });
