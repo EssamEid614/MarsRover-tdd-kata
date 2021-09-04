@@ -17,7 +17,11 @@
    const app:Express = express();
    app.use(express.json());
    app.post("/moveRover",(req,res)=>{
-      let newPosition = marsRover.move(req.body.movementString)
+      let newPosition:String
+      const movementString:String =req.body.movementString
+      for(let i=0;i<movementString.length;i++){
+         newPosition= marsRover.move(movementString[i])
+      }
       res.status(200).send({roverPosition:newPosition})
    })
    return app;
