@@ -14,8 +14,9 @@ export default class Rover{
         return `${this.x} ${this.y} ${this.facingDirection}`
     }
 
-    public move(){
-        
+    public move(movementChar:String):String{
+       this.y = this.y+1
+       return this.getPosition()
     }
     public getFacingDirection():String{
         return this.facingDirection
