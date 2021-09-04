@@ -29,7 +29,7 @@ export default class Rover {
     else if(movementChar === "L" || movementChar === "R"){
         const preOrNext:number = movementChar==="L"?7:9
         const currentIndex:number = this.circularArrayOfDirections.indexOf(this.facingDirection)
-        this.facingDirection=this.circularArrayOfDirections[currentIndex+preOrNext%4]
+        this.facingDirection=this.circularArrayOfDirections[(currentIndex+preOrNext)%4]
     }
     
     return this.getPosition();
@@ -47,6 +47,11 @@ export default class Rover {
     this.x = 0;
     this.y = 0;
     this.facingDirection = "North";
+  }
+  public setRover(x: number, y: number, facingDirection: String){
+    this.x = x;
+    this.y = y;
+    this.facingDirection = facingDirection;
   }
   private getMotion(): Motion {
     switch (this.facingDirection) {
