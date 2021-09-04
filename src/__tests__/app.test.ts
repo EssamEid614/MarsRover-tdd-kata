@@ -29,6 +29,18 @@ describe.each([
       ["LLLLLLLL", "0 0 South"],
     ],
   ],
+  [0,0,"East",
+    [
+        ["F", "1 0 East"],
+        ["B", "-1 0 East"],
+        ["L", "0 0 North"],
+        ["R", "0 0 South"],
+        ["FF", "2 0 East"],
+        ["BB", "-2 0 East"],
+        ["LL", "0 0 West"],
+        ["LLLLLLLL", "0 0 East"],
+    ],
+  ]
 ])(
   "Testing Robot with initial conditions x:%i, y:%i facing %s",
   (
@@ -48,7 +60,7 @@ describe.each([
         new RegExp("^-?\\d+ -?\\d+ (North|South|East|West)$")
       );
     });
-    test.each(testCases)("testing facing North with command %s", (a, b) => {
+    test.each(testCases)(`testing facing ${initialDirection} with command %s`, (a, b) => {
       return request(app)
         .post("/moveRover")
         .send({ movementString: a })
