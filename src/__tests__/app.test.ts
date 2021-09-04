@@ -1,17 +1,20 @@
-import { newApp } from "../app"
-import { marsRover } from "../app"
-import  request from "supertest"
+import { marsRover, newApp } from "../app";
+import request from "supertest";
+import Rover from "../Rover";
 
-const app = newApp()
-
+const app = newApp();
 describe("Test robot position", () => {
-    
-    afterEach(()=>{
-        //after all the tests run , ensure that the position is returned correctly
-        console.log("after each")
-        let position:String =marsRover.getPosition() 
-        expect(position).toMatch(new RegExp("^-?\d+ -?\d+ North|South|East|West$"))
-      })
-
-})
-
+  beforeEach(() => {
+    //before each time a test case runs , reset the rover position so the output can be easily predicted
+    marsRover.resetRover()
+  });
+  afterEach(() => {
+    //after all the tests run , ensure that the position is returned correctly
+    let position: String = marsRover.getPosition();
+    expect(position).toMatch(new RegExp("^-?\\d+ -?\\d+ (North|South|East|West)$"));
+  });
+  //Forwards While Facing North
+  test("api should respond when asked to move forwards while facing north to add 1 to current Y ", () => {
+    return request(app).post("/moveRover").send({movementString:"F"}).expect(200,{roverPosition:"0 1 North"})
+  });
+});

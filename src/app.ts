@@ -16,5 +16,8 @@
  export function newApp(): Express {
    const app:Express = express();
    app.use(express.json());
+   app.post("/moveRover",(req,res)=>{
+      res.send(200)
+   })
    return app;
 }

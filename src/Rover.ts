@@ -26,5 +26,10 @@ export default class Rover{
     public getY():number{
         return this.y
     }
+    public resetRover(){
+        this.x=0
+        this.y=0
+        this.facingDirection = "North"
+    }
 
 }
