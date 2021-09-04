@@ -25,6 +25,9 @@ export default class Rover {
         this.x = this.x + nextMotion.val;
       }
     }
+    else{
+        this.y=this.y-1
+    }
 
     return this.getPosition();
   }
