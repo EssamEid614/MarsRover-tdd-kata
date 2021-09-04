@@ -4,7 +4,7 @@ export default class Rover {
   private x: number;
   private y: number;
   private facingDirection: String;
-
+  private circularArrayOfDirections:String[]=["North","East","South","West"]
   constructor(x: number, y: number, facingDirection: String) {
     this.x = x;
     this.y = y;
@@ -27,7 +27,8 @@ export default class Rover {
       }
     }
     else if(movementChar === "L"){
-        this.facingDirection="West"
+        const currentIndex:number = this.circularArrayOfDirections.indexOf(this.facingDirection)
+        this.facingDirection=this.circularArrayOfDirections[currentIndex+7%4]
     }
 
     return this.getPosition();
