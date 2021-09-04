@@ -16,17 +16,18 @@ export default class Rover {
   }
 
   public move(movementChar: String): String {
-    if (movementChar === "F") {
+    if (movementChar === "F" || movementChar=="B") {
       //movement on axis
       let nextMotion: Motion = this.getMotion();
+      if(movementChar==="B"){
+        nextMotion.val = nextMotion.val * -1
+      }
       if (nextMotion.axis === "y") {
         this.y = this.y + nextMotion.val;
-      } else {
-        this.x = this.x + nextMotion.val;
       }
     }
     else{
-        this.y=this.y-1
+        
     }
 
     return this.getPosition();
