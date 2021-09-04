@@ -26,12 +26,10 @@ export default class Rover {
         this.y = this.y + nextMotion.val;
       }
     }
-    else if(movementChar === "L"){
+    else if(movementChar === "L" || movementChar === "R"){
+        const preOrNext:number = movementChar==="L"?7:9
         const currentIndex:number = this.circularArrayOfDirections.indexOf(this.facingDirection)
-        this.facingDirection=this.circularArrayOfDirections[currentIndex+7%4]
-    }
-    else{
-        this.facingDirection="East"
+        this.facingDirection=this.circularArrayOfDirections[currentIndex+preOrNext%4]
     }
     
     return this.getPosition();
